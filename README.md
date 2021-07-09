@@ -9,7 +9,10 @@ I used Ubuntu 20.04
 
 https://www.mono-project.com/download/stable/#download-lin
 
-In terminal: cd to the project root folder and run:
+In terminal: cd to the project root folder (not the .sln file folder) and run:
 xsp4 --port 8000
 
-open a web browser using http://localhost:8000
+for example: "~/Projects/test_aspnet_webforms/test_aspnet_webforms$ xsp4 --port 8000"
+
+
+open a web browser using and paste the address: http://127.0.0.1:8000/api/v1/similar.asmx
