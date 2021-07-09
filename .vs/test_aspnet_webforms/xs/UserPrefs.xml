@@ -1,0 +1,50 @@
+﻿<Properties StartupConfiguration="{EE8CEFFC-7322-489B-BF8C-40BD7C3438BC}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../api/v1/similar.asmx">
+    <Files>
+      <File FileName="../api/v1/similar.asmx.cs" Line="68" Column="17" />
+      <File FileName="../App_Start/WebApiConfig.cs" Line="19" Column="1" />
+      <File FileName="../Web.config" Line="18" Column="24" />
+      <File FileName="../Global.asax.cs" Line="12" Column="1" />
+      <File FileName="../Global.asax" Line="1" Column="1" />
+      <File FileName="../Common/Utils.cs" Line="27" Column="1" />
+      <File FileName="../api/v1/stats.asmx.cs" Line="17" Column="9" />
+      <File FileName="../index.html" Line="5" Column="49" />
+      <File FileName="../styling.css" Line="11" Column="1" />
+      <File FileName="../api/v1/similar.asmx" Line="3" Column="49" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="test_aspnet_webforms" expanded="True">
+            <Node name="test_aspnet_webforms" expanded="True">
+              <Node name="api" expanded="True">
+                <Node name="v1" expanded="True">
+                  <Node name="similar.asmx" expanded="True" selected="True" />
+                  <Node name="stats.asmx" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="App_Start" expanded="True" />
+              <Node name="Global.asax" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>sim.Context.ApplicationInstance</Value>
+          <Value>httpCntoext</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.test__aspnet__webforms PreferredExecutionTarget="firefox" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/osboxes/Projects/test_aspnet_webforms/test_aspnet_webforms/similar.asmx.cs" line="42" column="1" />
+      <Breakpoint file="/home/osboxes/Projects/test_aspnet_webforms/test_aspnet_webforms/api/v1/similar.asmx.cs" line="71" column="55" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

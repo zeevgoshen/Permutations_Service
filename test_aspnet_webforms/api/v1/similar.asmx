@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" Class="test_aspnet_webforms.similar" %>
