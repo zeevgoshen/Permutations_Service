@@ -1,15 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace test_aspnet_webforms.Common
 {
-    public static class Utils
+    public class Utils
     {
         public static string log_path = "";
+        private static readonly object syncLock = new object();
+        private static Utils mInstance;
 
-         
-        public static string createAndStartLogging()
+        private Utils()
+        {
+
+        }
+
+        public static Utils GetInstance()
+        {
+            if (mInstance == null) // first check
+            {
+                lock (syncLock)
+                {
+                    if (mInstance == null) // second check
+                    {
+                        mInstance = new Utils();
+                    }
+
+                }
+            }
+            return mInstance;
+        }
+
+        public string CreateAndStartLogging()
         {
             log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER);
 
@@ -21,17 +44,16 @@ namespace test_aspnet_webforms.Common
             return log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME);
         }
 
-        public static void writeLog(string log_path, string severity, string txt)
+        public void WriteLog(string log_path, string severity, string txt)
         {
             File.AppendAllText(log_path, "\n" + DateTime.Now + " " + severity + " " + txt);
         }
 
-        public static string OpenDBFile()
+        public string OpenDBFile()
         {
             try
             {
-
-                Utils.writeLog(log_path, "INFO", "Opening DB for reading.");
+                mInstance.WriteLog(log_path, "INFO", "Opening DB for reading.");
                 string db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
 
                 if (!File.Exists(db_path))
@@ -49,6 +71,7 @@ namespace test_aspnet_webforms.Common
             }
             catch (Exception ex)
             {
+                mInstance.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
                 return null;
             }
         }

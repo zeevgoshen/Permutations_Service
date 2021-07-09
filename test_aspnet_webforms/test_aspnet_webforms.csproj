@@ -61,9 +61,6 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Common\SerializeWorldList.cs" />
-    <Compile Include="Common\SoapService.cs" />
-    <Compile Include="Common\TodoItem.cs" />
-    <Compile Include="Common\ISoapService.cs" />
     <Compile Include="api\v1\stats.asmx.cs">
       <DependentUpon>stats.asmx</DependentUpon>
     </Compile>
