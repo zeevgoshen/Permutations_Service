@@ -15,4 +15,12 @@ xsp4 --port 8000
 for example: "~/Projects/test_aspnet_webforms/test_aspnet_webforms$ xsp4 --port 8000"
 
 
-open a web browser using and paste the address: http://127.0.0.1:8000/api/v1/similar.asmx
+
+open a web browser using and paste the address: 
+
+http://127.0.0.1:8000/index.html
+
+--or
+
+http://127.0.0.1:8000/api/v1/similar.asmx
+http://127.0.0.1:8000/api/v1/stats.asmx
