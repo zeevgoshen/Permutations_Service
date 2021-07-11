@@ -6,11 +6,13 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Services;
 using System.Web.UI;
+using System.Xml.Serialization;
 using test_aspnet_webforms.Common;
 
 namespace test_aspnet_webforms
 {
     [WebService]
+    //[XmlInclude(typeof(similar))]
     public class similar : System.Web.Services.WebService
     {
         private const string V = "http://127.0.0.1:8000/api/v1/similar";
@@ -56,6 +58,12 @@ namespace test_aspnet_webforms
                     File.WriteAllText(Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME), "Log init failed.");
                 }
 
+                if (inputWord == string.Empty)
+                {
+                    // show hidden html validation error
+                    return;
+                }
+
                 utils.WriteLog(log_path, "INFO", "Main flow started.");
 
 
@@ -65,10 +73,6 @@ namespace test_aspnet_webforms
                 {
                     return;
                 }
-
-
-                // routing to the exact address
-
 
                 // algorithem part of the search.
 
@@ -85,6 +89,30 @@ namespace test_aspnet_webforms
                     HttpContext.Current.Request.ContentType = "text/xml; charset=UTF-8";
                 }*/
 
+
+
+
+                utils = Utils.GetInstance();
+
+                //"stressed", "apple"
+                List<string> allPermResults = utils.PrintPerms(inputWord);
+
+                // results is all possible permutations
+                // cross with db data:
+                // 
+
+                string final = string.Empty;
+                List<string> dbResults = utils.OpenDBFileAndReturnList();
+
+                foreach (string s in allPermResults)
+                {
+                    if (dbResults.Contains(s))
+                    {
+                        final += s;
+                        final += ",";
+                    }
+
+                }
 
                 //string result = GetSomething();
                 int res = await ReadFile();

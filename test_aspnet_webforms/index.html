@@ -1,6 +1,12 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+      "http://www.w3.org/TR/html4/strict.dtd">
+<html  lang="en-US">
+<head profile="http://www.w3.org/2005/10/profile">
+        
+        <link rel="icon" 
+      type="image/png" 
+      href="http://example.com/myicon.png">
+        <link rel="shortcut icon" href="">
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" href="styling.css ">    
@@ -10,7 +16,8 @@
         <script>
             
             var url = "/api/v1/similar.asmx?w1=";
-            
+            url = "/api/v1/similar.asmx?page=op&op=CheckWordAsync&bnd=similarSoap12&tab=test";
+            url = "http://127.0.0.1:8000/api/v1/similar.asmx?page=op&tab=test&op=CheckWordAsync&bnd=similarSoap12&ext=testform&inputWord=";
             
             function updateWordsQueryString(){
                 
@@ -20,7 +27,7 @@
                     alert("Word field is empty.");
                     return;
                 }
-                var new_url = updateQueryStringParameter(url,"w1",new_value);
+                var new_url = updateQueryStringParameter(url,"inputWord",new_value);
                 document.getElementById("link_words").href = new_url;
             }
                        
@@ -43,9 +50,13 @@
     <div style="margin:20px">
         <div class="">
             <div class="">
+                <input id="first_word" type="text" class="similar_css"/>        
+                <!--a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a-->
+                <!--a href="/api/v1/similar.asmx?w1=${new_value}" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a-->
+                        
                 <a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a>
-                <input id="first_word" type="text" class="input_word_css"/>        
             </div>
+                    
         </div>
         <div>
             <div class="main">

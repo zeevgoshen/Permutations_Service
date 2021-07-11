@@ -9,7 +9,7 @@ namespace test_aspnet_webforms
         {
             similar se = new similar();
 
-            se.CheckWord("hh");
+            //se.CheckWordAsync("hh");
 
 
 

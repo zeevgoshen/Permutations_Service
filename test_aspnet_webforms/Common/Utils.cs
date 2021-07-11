@@ -75,5 +75,124 @@ namespace test_aspnet_webforms.Common
                 return null;
             }
         }
+
+        public List<string> OpenDBFileAndReturnList()
+        {
+            try
+            {
+                mInstance.WriteLog(log_path, "INFO", "Opening DB for reading.");
+                string db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
+
+                if (!File.Exists(db_path))
+                {
+                    return null;
+                }
+
+                // By default, ReadAllLines(*) closes the file after reading
+                var wordFile = File.ReadAllLines(db_path);
+                var wordList = new List<string>(wordFile);
+
+                //SerializeWorldList ser = SerializeWorldList.Create(wordList);
+
+                return wordList;
+            }
+            catch (Exception ex)
+            {
+                mInstance.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
+                return null;
+            }
+        }
+
+        public List<string> PrintPerms(string s)
+        {
+            List<string> result = new List<string>();
+            Dictionary<char, int> map = BuildFreqTable(s);
+            PrintPerms(map, "", s.Length, result);
+            return result;
+        }
+
+        public Dictionary<char, int> BuildFreqTable(string s)
+        {
+            Dictionary<char, int> map = new Dictionary<char, int>();
+            foreach (char c in s.ToCharArray())
+            {
+                if (!map.ContainsKey(c))
+                {
+                    map.Add(c, 0);
+                }
+                map[c]++; //(c, map[c] + 1); // [c] instead of .get(c) which gets value by key
+            }
+            return map;
+        }
+
+        void PrintPerms(Dictionary<char, int> map, String prefix, int remaining, List<string> result)
+        {
+            try
+            {
+                /* Base case. Permutation has been completed. */
+                if (remaining == 0)
+                {
+                    result.Add(prefix);
+                    return;
+                }
+
+                //for (char c in map.keySet())
+
+                //foreach (char c in map.Keys) // or map.Keys
+                foreach (char c in new List<char>(map.Keys)) // or map.Keys
+                {
+                    int count = map[c]; // [c] instead of .get(c) which gets value by key
+
+                    if (count > 0)
+                    {
+                        map[c]--;
+                        PrintPerms(map, prefix + c, remaining - 1, result);
+                        map[c] = count;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                mInstance.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
+            }
+
+        }
+
+        // assumptions:
+        // case-incensitive
+        // whitespace is insignificant
+        //
+        // check character count
+        // pg. 194
+        /*public bool IsPermutation(string s, string t)
+        {
+
+            if (s.Length != t.Length)
+            {
+                return false;
+            }
+
+            int[] letters = new int[128]; // assumption
+
+            char[] s_array = s.ToCharArray();
+
+            foreach (char c in s_array)
+            {
+                letters[c]++;
+            }
+
+            for (int i = 0; i < t.Length; i++)
+            {
+                int c = (int)t[i];
+                letters[c]--;
+                if (letters[c] < 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }*/
+
     }
 }
