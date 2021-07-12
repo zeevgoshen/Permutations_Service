@@ -27,6 +27,8 @@ http://127.0.0.1:8000/index.html
 
 --or
 
+http://127.0.0.1:8000/api/v1/similar.asmx?page=op&op=CheckWordAsync&bnd=similarSoap12&tab=test
+
 http://127.0.0.1:8000/api/v1/similar.asmx
 
 http://127.0.0.1:8000/api/v1/stats.asmx
