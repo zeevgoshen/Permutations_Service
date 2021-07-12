@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" Class="test_aspnet_webforms.api.v1.stats" %>
+﻿<%@ WebService Language="C#" Class="Permutation_Services.api.v1.stats" %>

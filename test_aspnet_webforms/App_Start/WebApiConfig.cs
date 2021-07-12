@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace test_aspnet_webforms
+namespace Permutation_Services
 {
     public static class WebApiConfig
     {

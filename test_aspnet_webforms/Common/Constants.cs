@@ -1,5 +1,5 @@
 ﻿using System;
-namespace test_aspnet_webforms
+namespace Permutation_Services
 {
     public class Constants
     {

@@ -7,13 +7,13 @@ using System.Web.Http;
 using System.Web.Services;
 using System.Web.UI;
 using System.Xml.Serialization;
-using test_aspnet_webforms.Common;
+using Permutation_Services.Common;
 
-namespace test_aspnet_webforms
+namespace Permutation_Services
 {
     [WebService]
     //[XmlInclude(typeof(similar))]
-    public class similar : System.Web.Services.WebService
+    public class similar : WebService
     {
         private const string V = "http://127.0.0.1:8000/api/v1/similar";
         Task<int> longRunningReadTask;
@@ -96,16 +96,23 @@ namespace test_aspnet_webforms
 
                 //"stressed", "apple"
                 List<string> allPermResults = utils.PrintPerms(inputWord);
+                List<string> dbResults = utils.OpenDBFileAndReturnList();
 
                 // results is all possible permutations
-                // cross with db data:
-                // 
+                // 1) cross with db data:
+                // 2) tests
+                // 3) ui of index.html
+                // 4) async work
+                // 5) stats
+                // 6) explain the algorithem of permutations.
 
                 string final = string.Empty;
-                List<string> dbResults = utils.OpenDBFileAndReturnList();
+
 
                 foreach (string s in allPermResults)
                 {
+                    // this inserts the actual string too,
+                    // needs a fix
                     if (dbResults.Contains(s))
                     {
                         final += s;

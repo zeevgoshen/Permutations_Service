@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace test_aspnet_webforms.Common
+namespace Permutation_Services.Common
 {
     public class SerializeWorldList
     {

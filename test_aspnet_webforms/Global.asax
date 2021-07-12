@@ -1,1 +1,1 @@
-﻿<%@ Application Inherits="test_aspnet_webforms.Global" %>
+﻿<%@ Application Inherits="Permutation_Services.Global" %>

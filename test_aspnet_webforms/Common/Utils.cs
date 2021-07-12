@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace test_aspnet_webforms.Common
+namespace Permutation_Services.Common
 {
     public class Utils
     {

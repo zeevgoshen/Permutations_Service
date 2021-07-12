@@ -1,13 +1,13 @@
 ﻿using System.Web;
 using System.Web.Http;
 
-namespace test_aspnet_webforms
+namespace Permutation_Services
 {
     public class Global : HttpApplication
     {
         protected void Application_Start()
         {
-            similar se = new similar();
+            //similar se = new similar();
 
             //se.CheckWordAsync("hh");
 
