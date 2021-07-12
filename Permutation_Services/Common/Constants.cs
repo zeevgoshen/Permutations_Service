@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Permutation_services
+namespace Permutation_Services
 {
     public class Constants
     {

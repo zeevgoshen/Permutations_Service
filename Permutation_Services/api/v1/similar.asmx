@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" Class="Permutation_services.similar" %>
+﻿<%@ WebService Language="C#" Class="Permutation_Services.similar" %>

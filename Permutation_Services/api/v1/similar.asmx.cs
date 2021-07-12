@@ -10,7 +10,7 @@ using System.Web.UI;
 using System.Xml.Serialization;
 using Permutation_Services.Common;
 
-namespace Permutation_services
+namespace Permutation_Services
 {
     [WebService]
     //[XmlInclude(typeof(similar))]

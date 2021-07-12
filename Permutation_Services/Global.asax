@@ -1,1 +1,1 @@
-﻿<%@ Application Inherits="Permutation_services.Global" %>
+﻿<%@ Application Inherits="Permutation_Services.Global" %>

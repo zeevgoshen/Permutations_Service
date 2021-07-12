@@ -1,0 +1,27 @@
+﻿body {
+
+
+}
+
+.main {
+    Width:450px;
+    height:100%;
+    //border:2px solid blue;
+    
+    padding:20px;
+}
+
+.h1_text{
+    font-size:18px;
+    font-family:arial;
+    font-weight:bold;
+}
+.similar_css{
+    margin-right:20px;
+    margin-bottom:20px;
+}
+
+.stats_css{
+    margin-top:20px;
+    border:1px solid blue;
+}

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Http;
 
-namespace Permutation_services
+namespace Permutation_Services
 {
     public class Global : HttpApplication
     {
