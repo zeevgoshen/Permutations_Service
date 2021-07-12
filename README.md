@@ -23,7 +23,7 @@ once there, run: "xsp4 --port 8000"
 
 open a web browser using and paste the address: 
 
-http://127.0.0.1:8000/index.html / http://localhost:8000/index.html
+http://127.0.0.1:8000/index.html OR http://localhost:8000/index.html
 
 --or
 
