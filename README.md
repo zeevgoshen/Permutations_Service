@@ -9,10 +9,15 @@ I used Ubuntu 20.04
 
 https://www.mono-project.com/download/stable/#download-lin
 
+
 In terminal: cd to the project root folder (not the .sln file folder) and run:
 xsp4 --port 8000
 
-for example: "~/Projects/test_aspnet_webforms/test_aspnet_webforms$ xsp4 --port 8000"
+
+for example: "Projects/Permutation_Services/Permutation_Services"
+
+
+once there, run: "xsp4 --port 8000"
 
 
 
