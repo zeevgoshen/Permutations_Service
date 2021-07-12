@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -9,7 +10,7 @@ using System.Web.UI;
 using System.Xml.Serialization;
 using Permutation_Services.Common;
 
-namespace Permutation_Services
+namespace Permutation_services
 {
     [WebService]
     //[XmlInclude(typeof(similar))]
@@ -19,6 +20,7 @@ namespace Permutation_Services
         Task<int> longRunningReadTask;
 
         Utils utils;
+        List<string> finalWordList;
 
         public similar()
         {
@@ -49,7 +51,8 @@ namespace Permutation_Services
         [WebMethod]
         [Route("/api/v1/similar")]
         [HttpGet]
-        public async System.Threading.Tasks.Task CheckWordAsync(string inputWord)
+        //public async Task CheckWordAsync(string inputWord)
+        public string CheckWordAsync(string inputWord)
         {
             try
             {
@@ -60,29 +63,28 @@ namespace Permutation_Services
 
                 if (inputWord == string.Empty)
                 {
-                    // show hidden html validation error
-                    return;
+                    return Constants.UserInput.EMPTY_INPUTWORD;
                 }
 
-                utils.WriteLog(log_path, "INFO", "Main flow started.");
+                utils.WriteLog(log_path, "INFO", "Searching for: + " + inputWord);
 
 
                 string values = utils.OpenDBFile();
 
                 if (values == null)
                 {
-                    return;
+                    return Constants.DB.DB_NO_RESULTS;
                 }
 
                 // algorithem part of the search.
 
 
-                similar sim = new similar();
+                //similar sim = new similar();
 
-                HttpContext httpContext = sim.Context;
+                //HttpContext httpContext = sim.Context;
 
-                httpContext.Request.ContentType = "text/xml";
-                httpContext.Request.ContentType = "text/xml; charset=UTF-8";
+                //httpContext.Request.ContentType = "text/xml";
+                //httpContext.Request.ContentType = "text/xml; charset=UTF-8";
 
                 /*if (HttpContext.Current.Request.ContentType == "text/xml")
                 {
@@ -91,47 +93,73 @@ namespace Permutation_Services
 
 
 
+                // results is all possible permutations
+                // 1) cross with db data:
+                // 2) tests
+                // 3) ui of index.html
+                // 4) async work
+                // 5) stats - count specific files in log
+                // 6) explain the algorithem of permutations.
 
                 utils = Utils.GetInstance();
 
                 //"stressed", "apple"
                 List<string> allPermResults = utils.PrintPerms(inputWord);
                 List<string> dbResults = utils.OpenDBFileAndReturnList();
-
-                // results is all possible permutations
-                // 1) cross with db data:
-                // 2) tests
-                // 3) ui of index.html
-                // 4) async work
-                // 5) stats
-                // 6) explain the algorithem of permutations.
-
-                string final = string.Empty;
+                finalWordList = new List<string>();
 
 
-                foreach (string s in allPermResults)
+                Task.WaitAll(PerformSearch(allPermResults, dbResults));
+
+                //await PerformSearch(allPermResults, dbResults);
+                //await PerformSearch(allPermResults, dbResults);
+                //Task t = await PerformSearch(allPermResults, dbResults);
+
+                /*foreach (string s in allPermResults)
                 {
-                    // this inserts the actual string too,
-                    // needs a fix
                     if (dbResults.Contains(s))
                     {
-                        final += s;
-                        final += ",";
+                        finalWordList.Add(s);
+
                     }
+                }*/
 
-                }
-
-                //string result = GetSomething();
-                int res = await ReadFile();
-
+                SerializeWorldList ser = SerializeWorldList.Create(finalWordList);
+                string jsonString = ser.Convert();
+                return jsonString;
 
             }
             catch (Exception ex)
             {
                 File.WriteAllText(log_path, ex.Message);
+                return "";
             }
         }
 
+        //private async Task PerformSearch(List<string> allPermResults, List<string> dbResults)
+
+        private Task PerformSearch(List<string> allPermResults, List<string> dbResults)
+        {
+            finalWordList = new List<string>();
+
+
+            /*if (dbResults.Contains(x => dbResults.Where = x))
+            {
+
+            }*/
+            foreach (string s in allPermResults)
+            {
+                if (dbResults.Contains(s))
+                {
+                    finalWordList.Add(s);
+
+                }
+            };
+
+            return Task.CompletedTask;
+
+
+        }
 
         public async Task<int> ReadFile()
         {

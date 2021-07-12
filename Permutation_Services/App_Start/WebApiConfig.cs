@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace Permutation_Services
+namespace Permutation_services
 {
     public static class WebApiConfig
     {
