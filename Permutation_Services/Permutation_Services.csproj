@@ -6,7 +6,7 @@
     <ProjectGuid>{EE8CEFFC-7322-489B-BF8C-40BD7C3438BC}</ProjectGuid>
     <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Permutation_services</RootNamespace>
+    <RootNamespace>Permutation_Services</RootNamespace>
     <AssemblyName>Permutation_Services</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
   </PropertyGroup>
