@@ -66,8 +66,8 @@ namespace Permutation_Services
                     return Constants.UserInput.EMPTY_INPUTWORD;
                 }
 
+                inputWord = inputWord.ToLower();
                 utils.WriteLog(log_path, "INFO", "Searching for: + " + inputWord);
-
 
                 string values = utils.OpenDBFile();
 
