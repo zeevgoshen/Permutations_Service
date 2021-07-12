@@ -10,7 +10,7 @@ I used Ubuntu 20.04
 https://www.mono-project.com/download/stable/#download-lin
 
 
-In terminal: cd to the project root folder (not the .sln file folder) and run:
+In terminal: cd to the project files folder (not the .sln file) and run:
 xsp4 --port 8000
 
 
