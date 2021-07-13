@@ -18,7 +18,7 @@ namespace Permutation_Services
     public class similar : WebService
     {
         private const string V = "http://127.0.0.1:8000/api/v1/similar";
-        Task<int> longRunningReadTask;
+
 
         Utils utils;
         List<string> finalWordList;
