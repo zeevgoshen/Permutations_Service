@@ -52,6 +52,7 @@
     <Content Include="api\v1\similar.asmx" />
     <Content Include="index.html" />
     <Content Include="styling.css" />
+    <Content Include="js_scripts.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -67,6 +68,7 @@
     <Compile Include="api\v1\similar.asmx.cs">
       <DependentUpon>similar.asmx</DependentUpon>
     </Compile>
+    <Compile Include="Common\SerializeStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="words_clean\" />

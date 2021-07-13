@@ -8,7 +8,7 @@ namespace Permutation_Services.Common
 {
     public class Utils
     {
-        public static string log_path = "";
+        public static string log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME);
         private static readonly object syncLock = new object();
         private static Utils mInstance;
 

@@ -1,65 +1,34 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
       "http://www.w3.org/TR/html4/strict.dtd">
 <html  lang="en-US">
-    <head profile="http://www.w3.org/2005/10/profile">   
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <link rel="stylesheet" href="styling.css ">    
-
-    <title>Main Page</title>
-        
-        <script>
-            
-            var url = "/api/v1/similar.asmx?w1=";
-            url = "/api/v1/similar.asmx?page=op&op=CheckWordAsync&bnd=similarSoap12&tab=test";
-            url = "http://127.0.0.1:8000/api/v1/similar.asmx?page=op&tab=test&op=CheckWordAsync&bnd=similarSoap12&ext=testform&inputWord=";
-            
-            function updateWordsQueryString(){
-                
-                var new_value = document.getElementById("first_word").value;
-            
-                if (new_value == "") {
-                    alert("Word field is empty.");
-                    return;
-                }
-                var new_url = updateQueryStringParameter(url,"inputWord",new_value);
-                document.getElementById("link_words").href = new_url;
-            }
-                       
-            function updateQueryStringParameter(uri, key, value) {           
-              var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-              var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-              if (uri.match(re)) {
-                return uri.replace(re, '$1' + key + "=" + value + '$2');
-              }
-              else {
-                return uri + separator + key + "=" + value;
-              }
-            }
-        </script>
-        
+    <head profile="http://www.w3.org/2005/10/profile">
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <link rel="stylesheet" href="styling.css">
+        <script type="text/javascript" src="js_scripts.js" defer ></script>
+        <title>Main Page</title>
         <h1 class="h1_text">Permutation test</h1>
-</head>
-<body>
-<div class="main">    
-    <div style="margin:20px">
-        <div class="">
-            <div class="">
-                <input id="first_word" type="text" class="similar_css"/>        
-                <!--a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a-->
-                <!--a href="/api/v1/similar.asmx?w1=${new_value}" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a-->
-                        
-                <a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a>
+    </head>
+    <body>
+        <div class="main">    
+            <div style="margin:20px">
+                <div class="">
+                    <div class="">
+                        <input id="first_word" type="text" class="similar_css"/>        
+                        <a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a>
+                    </div>
+                            
+                </div>
+                <div>
+                    <div class="">
+                        <a href="#" onclick="test()">Stats</a>                                
+                        <ol>
+                            <li><a href="#" class="" id="dictionaryCount" onclick="updateWordsDictionaryQueryString()">Count words in dictionary</a></li>
+                            <li><a href="#" class="" id="searchCount" onclick="countSearches()">Number of searches (not including 'stats' requests.)</a></li>
+                            <li><a href="#" class="" id="" onclick="">Average request time (not including 'stats' requests.)</a></li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-                    
         </div>
-        <div>
-            <div class="main">
-                <a href="#" onclick="test()">Stats</a>                            
-            </div>
-        </div>
-                
-                <span></span>
-    </div>
-</div>
-</body>
+    </body>
 </html>
