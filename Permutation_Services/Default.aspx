@@ -10,22 +10,26 @@
 </head>
 <body>
 	<form id="form1" runat="server">
-            <div class="main">    
-            <div style="margin:20px">
+            <table><tr><td width="40%"></td><td>
+                        
+                        
+                        <div class="main">    
+            <div style="margin:20px;border:1px solid red;padding:10px">
+                
                 <div class="">
-                    <div class="">
-                        <input id="first_word" type="text" class="similar_css"/>        
-                        <a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a>
-                    </div>
-                            
-                </div>
-                <div>
-                    <div class="">
-                        <a href="#" id="statsLink" onclick="updateWordsDictionaryQueryString()">See some Stats !</a>                                
-                    </div>
-                </div>
+                    <input id="first_word" type="text" class="similar_css"/>        
+                    <a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a>
+                </div>       
+                <div class="">
+                    <a href="#" id="statsLink" onclick="updateWordsDictionaryQueryString()">See some Stats !</a>                                
+                </div>                 
             </div>
+                
+            <label id="messageDiv">When tranfered to the results page, press the back button to come back here.</label>    
         </div>
+                        
+            </td><td></td></tr></table>
+        
 	</form>
 </body>
 </html>
