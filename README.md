@@ -27,6 +27,8 @@ I used Ubuntu 20.04
 https://www.mono-project.com/download/stable/#download-lin
 
 
+<b>Running the web-service:</b>
+
 In terminal: cd to the project files folder (not the .sln file) and run:
 xsp4 --port 8000
 
