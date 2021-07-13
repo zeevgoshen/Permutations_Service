@@ -51,7 +51,8 @@ http://127.0.0.1:8000/api/v1/similar.asmx
 http://127.0.0.1:8000/api/v1/stats.asmx
 
 
-Press "Back" after viewing the results.
+<b><h2>Press "Back" after viewing the results.</h2></b>
+
 
 
 
