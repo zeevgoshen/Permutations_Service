@@ -7,14 +7,15 @@ Searching for permutations of a user input word in a local DB file.
 1. The algorithm builds a dictionary from the input word where the key is a character
 and the value is the count of this letter, in the complete word.
 
-2. 
-
-* Before starting the search, the input word is convereted to lower-case.
+2. Before starting the search, the input word is convereted to lower-case.
 
 
 
 
-INSTALLATION OF MONO
+
+
+
+<b>INSTALLATION OF MONO</b>
 
 1st step, Adding the repo, paragraph 1:
 
