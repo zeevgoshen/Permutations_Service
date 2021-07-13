@@ -12,7 +12,8 @@ using Permutation_Services.Common;
 
 namespace Permutation_Services
 {
-    [WebService]
+    [WebService(Namespace =  "http://tempuri.org/")]
+
     //[XmlInclude(typeof(similar))]
     public class similar : WebService
     {
@@ -51,7 +52,6 @@ namespace Permutation_Services
         [WebMethod]
         [Route("/api/v1/similar")]
         [HttpGet]
-        //public async Task CheckWordAsync(string inputWord)
         public string CheckWordAsync(string inputWord)
         {
             try
@@ -79,19 +79,6 @@ namespace Permutation_Services
                 // algorithem part of the search.
 
 
-                //similar sim = new similar();
-
-                //HttpContext httpContext = sim.Context;
-
-                //httpContext.Request.ContentType = "text/xml";
-                //httpContext.Request.ContentType = "text/xml; charset=UTF-8";
-
-                /*if (HttpContext.Current.Request.ContentType == "text/xml")
-                {
-                    HttpContext.Current.Request.ContentType = "text/xml; charset=UTF-8";
-                }*/
-
-
 
                 // results is all possible permutations
                 // 1) cross with db data:
@@ -103,26 +90,28 @@ namespace Permutation_Services
 
                 utils = Utils.GetInstance();
 
-                //"stressed", "apple"
-                List<string> allPermResults = utils.PrintPerms(inputWord);
+                // try: "stressed", "apple"
+                //List<string> allPermResults = await Task.Run(() => utils.GetPermutationsWithDuplicatesAsync(inputWord));
+
+                // 1 calc perms
+                List<string> allPermResults = utils.GetPermutationsWithDuplicates(inputWord);
+
+                // 2 read db
                 List<string> dbResults = utils.OpenDBFileAndReturnList();
                 finalWordList = new List<string>();
 
+                // 3 cross results
+                var watchPerformSearch = System.Diagnostics.Stopwatch.StartNew();
 
-                Task.WaitAll(PerformSearch(allPermResults, dbResults));
+                //Task.WaitAll(PerformSearch(allPermResults, dbResults));
 
-                //await PerformSearch(allPermResults, dbResults);
-                //await PerformSearch(allPermResults, dbResults);
-                //Task t = await PerformSearch(allPermResults, dbResults);
+                PerformSearchSync(allPermResults, dbResults);
+                watchPerformSearch.Stop();
+                var elapsedMsPerformSearch = watchPerformSearch.ElapsedMilliseconds;
+                utils.WriteLog(log_path, "INFO", "PerformSearch of " + inputWord + " took - [ms]:" + elapsedMsPerformSearch.ToString());
 
-                /*foreach (string s in allPermResults)
-                {
-                    if (dbResults.Contains(s))
-                    {
-                        finalWordList.Add(s);
-
-                    }
-                }*/
+                finalWordList.Remove(inputWord);
+                 
 
                 SerializeWorldList ser = SerializeWorldList.Create(finalWordList);
                 string jsonString = ser.Convert();
@@ -136,17 +125,25 @@ namespace Permutation_Services
             }
         }
 
-        //private async Task PerformSearch(List<string> allPermResults, List<string> dbResults)
+        private void PerformSearchSync(List<string> allPermResults, List<string> dbResults)
+        {
+            finalWordList = new List<string>();
+
+            foreach (string s in allPermResults)
+            {
+                if (dbResults.Contains(s))
+                {
+                    finalWordList.Add(s);
+
+                }
+            };
+        }
+
 
         private Task PerformSearch(List<string> allPermResults, List<string> dbResults)
         {
             finalWordList = new List<string>();
 
-
-            /*if (dbResults.Contains(x => dbResults.Where = x))
-            {
-
-            }*/
             foreach (string s in allPermResults)
             {
                 if (dbResults.Contains(s))
@@ -157,59 +154,6 @@ namespace Permutation_Services
             };
 
             return Task.CompletedTask;
-
-
-        }
-
-        public async Task<int> ReadFile()
-        {
-            try
-            {
-                //mUtil = utilManager.GetInstance();
-                longRunningReadTask = TryRead();//mUtil.TryEncrypt(inFile);
-
-                int result = await longRunningReadTask;
-
-                if (result == 1)
-                {
-                    //lblStatus.Text = mEncryptDoneMsg;
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                utils.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
-                return 0;
-            }
-        }
-
-
-        //async Task<int> TryRead()
-        async Task<int> TryRead()
-        {
-            try
-            {
-                utils.WriteLog(log_path, "INFO", "Opening DB for reading.");
-                string db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
-
-                if (!File.Exists(db_path))
-                {
-                    return 0;
-                }
-
-                // By default, ReadAllLines(*) closes the file after reading
-                var wordFile = File.ReadAllLines(db_path);
-                var wordList = new List<string>(wordFile);
-
-                SerializeWorldList ser = SerializeWorldList.Create(wordList);
-
-                return 1; //ser.Convert();
-            }
-            catch (Exception ex)
-            {
-                utils.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
-                return 0;
-            }
         }
     }
 }

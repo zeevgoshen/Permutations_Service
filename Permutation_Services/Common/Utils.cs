@@ -50,6 +50,8 @@ namespace Permutation_Services.Common
             File.AppendAllText(log_path, "\n" + DateTime.Now + " " + severity + " " + txt);
         }
 
+
+        // remove:
         public string OpenDBFile()
         {
             try
@@ -93,8 +95,6 @@ namespace Permutation_Services.Common
                 var wordFile = File.ReadAllLines(db_path);
                 var wordList = new List<string>(wordFile);
 
-                //SerializeWorldList ser = SerializeWorldList.Create(wordList);
-
                 return wordList;
             }
             catch (Exception ex)
@@ -104,11 +104,26 @@ namespace Permutation_Services.Common
             }
         }
 
-        public List<string> PrintPerms(string s)
+        public string SerializeDBResultsList(List<string> wordsFromDB)
+        {
+            SerializeWorldList serializedWords = SerializeWorldList.Create(wordsFromDB);
+            return serializedWords.Convert();
+        }
+
+        public List<string> GetPermutationsWithDuplicatesAsync(string s)
         {
             List<string> result = new List<string>();
             Dictionary<char, int> map = BuildFreqTable(s);
-            PrintPerms(map, "", s.Length, result);
+            GetPermutationsWithDuplicates(map, "", s.Length, result);
+            return result;
+        }
+
+
+        public List<string> GetPermutationsWithDuplicates(string s)
+        {
+            List<string> result = new List<string>();
+            Dictionary<char, int> map = BuildFreqTable(s);
+            GetPermutationsWithDuplicates(map, "", s.Length, result);
             return result;
         }
 
@@ -126,7 +141,7 @@ namespace Permutation_Services.Common
             return map;
         }
 
-        void PrintPerms(Dictionary<char, int> map, String prefix, int remaining, List<string> result)
+        void GetPermutationsWithDuplicates(Dictionary<char, int> map, String prefix, int remaining, List<string> result)
         {
             try
             {
@@ -137,9 +152,6 @@ namespace Permutation_Services.Common
                     return;
                 }
 
-                //for (char c in map.keySet())
-
-                //foreach (char c in map.Keys) // or map.Keys
                 foreach (char c in new List<char>(map.Keys)) // or map.Keys
                 {
                     int count = map[c]; // [c] instead of .get(c) which gets value by key
@@ -147,7 +159,7 @@ namespace Permutation_Services.Common
                     if (count > 0)
                     {
                         map[c]--;
-                        PrintPerms(map, prefix + c, remaining - 1, result);
+                        GetPermutationsWithDuplicates(map, prefix + c, remaining - 1, result);
                         map[c] = count;
                     }
                 }
@@ -165,35 +177,6 @@ namespace Permutation_Services.Common
         //
         // check character count
         // pg. 194
-        /*public bool IsPermutation(string s, string t)
-        {
-
-            if (s.Length != t.Length)
-            {
-                return false;
-            }
-
-            int[] letters = new int[128]; // assumption
-
-            char[] s_array = s.ToCharArray();
-
-            foreach (char c in s_array)
-            {
-                letters[c]++;
-            }
-
-            for (int i = 0; i < t.Length; i++)
-            {
-                int c = (int)t[i];
-                letters[c]--;
-                if (letters[c] < 0)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }*/
 
     }
 }

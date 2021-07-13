@@ -1,5 +1,21 @@
 # PaoloAlto_PermutationService
 
+
+Searching for permutations of a user input word in a local DB file. 
+
+
+1. The algorithm builds a dictionary from the input word where the key is a character
+and the value is the count of this letter, in the complete word.
+
+2. 
+
+* Before starting the search, the input word is convereted to lower-case.
+
+
+
+
+INSTALLATION OF MONO
+
 1st step, Adding the repo, paragraph 1:
 
 https://www.mono-project.com/download/stable/#download-lin
@@ -32,3 +48,15 @@ http://127.0.0.1:8000/api/v1/similar.asmx?page=op&op=CheckWordAsync&bnd=similarS
 http://127.0.0.1:8000/api/v1/similar.asmx
 
 http://127.0.0.1:8000/api/v1/stats.asmx
+
+
+Press "Back" after viewing the results.
+
+
+
+
+
+
+
+
+

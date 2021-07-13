@@ -43,6 +43,8 @@
     <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -53,6 +55,8 @@
     <Content Include="index.html" />
     <Content Include="styling.css" />
     <Content Include="js_scripts.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="ServiceDescriptionGenerator.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -69,6 +73,22 @@
       <DependentUpon>similar.asmx</DependentUpon>
     </Compile>
     <Compile Include="Common\SerializeStats.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDescriptionGenerator.aspx.cs">
+      <DependentUpon>ServiceDescriptionGenerator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDescriptionGenerator.aspx.designer.cs">
+      <DependentUpon>ServiceDescriptionGenerator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="api\v1\StatsAverageRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="words_clean\" />
@@ -78,6 +98,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="words_clean\words_clean.txt" />
+    <None Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

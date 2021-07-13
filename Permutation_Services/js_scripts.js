@@ -13,7 +13,7 @@
             
             function updateWordsDictionaryQueryString(){
                 url = "http://127.0.0.1:8000/api/v1/stats.asmx?page=op&tab=test&op=countWordsInDictionary&bnd=statsSoap12&ext=testform";
-                document.getElementById("dictionaryCount").href = url;
+                document.getElementById("statsLink").href = url;
             }
                        
             function updateQueryStringParameter(uri, key, value) {           
