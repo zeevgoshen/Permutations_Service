@@ -22,7 +22,7 @@ namespace Permutation_Services.api.v1
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void ShowStats()
+        public void Show_Stats()
         {
             try
             {

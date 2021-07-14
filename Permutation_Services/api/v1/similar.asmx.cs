@@ -23,7 +23,7 @@ namespace Permutation_Services
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
-        public void CheckWordAsync(string inputWord)
+        public void Find_Permutations_In_DB(string word)
         {
             try
             {
@@ -34,18 +34,18 @@ namespace Permutation_Services
                     File.WriteAllText(Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME), "Log init failed.");
                 }
 
-                if (inputWord == string.Empty)
+                if (word == string.Empty)
                 {
                     utils.WriteLog(log_path, "DEBUG", "Input word is empty.");
                     return;
                 }
 
-                inputWord = inputWord.ToLower();
-                utils.WriteLog(log_path, "INFO", "Searching for: " + inputWord);
+                word = word.ToLower();
+                utils.WriteLog(log_path, "INFO", "Searching for: " + word);
                 //List<string> allPermResults = await Task.Run(() => utils.GetPermutationsWithDuplicatesAsync(inputWord));
 
                 // 1 calc perms
-                List<string> allPermResults = utils.GetPermutationsWithDuplicates(inputWord);
+                List<string> allPermResults = utils.GetPermutationsWithDuplicates(word);
 
                 // 2 read db
                 List<string> dbResults = utils.OpenDBFileAndReturnList();
@@ -61,9 +61,9 @@ namespace Permutation_Services
                 watchPerformSearch.Stop();
 
                 var elapsedMsPerformSearch = watchPerformSearch.ElapsedMilliseconds;
-                utils.WriteLog(log_path, "INFO", "PerformSearch of " + inputWord + " took - [ms]:" + elapsedMsPerformSearch.ToString());
+                utils.WriteLog(log_path, "INFO", "PerformSearch of " + word + " took - [ms]:" + elapsedMsPerformSearch.ToString());
 
-                finalWordList.Remove(inputWord);
+                finalWordList.Remove(word);
 
                 SerializeWorldList ser = SerializeWorldList.Create(finalWordList);
                 string jsonString = ser.Convert();
