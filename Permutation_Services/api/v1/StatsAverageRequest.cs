@@ -26,14 +26,12 @@ namespace Permutation_Services.api.v1
         {
             try
             {
-
                 foreach (string s in requestItems)
                 {
                     numberOfDigits = s.Length -1 - s.LastIndexOf(":");
 
                     bool res = int.TryParse( s.Substring(s.LastIndexOf(":") + 1, numberOfDigits), out sum);
                 }
-
                 return (int)sum / requestItems.Count();
             }
             catch (Exception ex)

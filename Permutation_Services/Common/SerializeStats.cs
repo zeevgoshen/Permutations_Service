@@ -6,19 +6,19 @@ namespace Permutation_Services.Common
 {
     public class SerializeStats
     {
-        public int WordCount
+        public int totalWords
         {
             set;
             get;
         }
 
-        public int RequestCount
+        public int totalRequests
         {
             set;
             get;
         }
 
-        public int AvgRequestTime
+        public int avgProcessingTimeNs
         {
             set;
             get;
@@ -27,10 +27,9 @@ namespace Permutation_Services.Common
         public static SerializeStats Create(int wordList, int requestCount, int avgTimePerRequest)
         {
             SerializeStats serializedStatsList = new SerializeStats();
-            serializedStatsList.WordCount = wordList;// wordList comes from the DB
-            serializedStatsList.RequestCount = requestCount;// wordList comes from the DB
-            serializedStatsList.AvgRequestTime = avgTimePerRequest;// wordList comes from the DB
-
+            serializedStatsList.totalWords = wordList;
+            serializedStatsList.totalRequests = requestCount;
+            serializedStatsList.avgProcessingTimeNs = avgTimePerRequest;
             return serializedStatsList;
         }
 

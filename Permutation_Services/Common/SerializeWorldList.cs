@@ -6,7 +6,7 @@ namespace Permutation_Services.Common
 {
     public class SerializeWorldList
     {
-        public List<string> Words
+        public List<string> similar
         {
             set;
             get;
@@ -15,7 +15,7 @@ namespace Permutation_Services.Common
         public static SerializeWorldList Create(List<string> wordList)
         {
             SerializeWorldList serializedWordList = new SerializeWorldList();
-            serializedWordList.Words = wordList;// wordList comes from the DB
+            serializedWordList.similar = wordList;// wordList comes from the DB
 
             return serializedWordList; 
         }
