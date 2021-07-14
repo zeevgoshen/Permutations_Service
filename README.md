@@ -40,7 +40,7 @@ once there, run: "xsp4 --port 8000"
 
 
 
-open a web browser using and paste the address: 
+open a web browser and paste the address: 
 
 http://127.0.0.1:8000 OR http://localhost:8000
 
