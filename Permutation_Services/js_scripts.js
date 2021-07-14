@@ -1,4 +1,4 @@
-﻿            function updateWordsQueryString(){
+﻿            function QueryPermutationDB(){
             
                 var url = "http://127.0.0.1:8000/api/v1/similar.asmx?page=op&tab=test&op=CheckWordAsync&bnd=similarSoap12&ext=testform&inputWord=";
                 var new_value = document.getElementById("first_word").value;
@@ -11,7 +11,7 @@
                 document.getElementById("link_words").href = new_url;
             }
             
-            function updateWordsDictionaryQueryString(){
+            function OpenStats(){
                 url = "http://127.0.0.1:8000/api/v1/stats.asmx?page=op&tab=test&op=ShowStats&bnd=statsSoap12&ext=testform";
                 document.getElementById("statsLink").href = url;
             }

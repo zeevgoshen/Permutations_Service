@@ -23,10 +23,10 @@
                         </div>     
                         <div class="">
                             <input id="first_word" type="text" class="similar_css"/>        
-                            <a href="#" class="similar_css" id="link_words" onclick="updateWordsQueryString()">Similar word</a>
+                            <a href="#" class="similar_css" id="link_words" onclick="QueryPermutationDB()">Similar word</a>
                         </div>       
                         <div class="">
-                            <a href="#" id="statsLink" onclick="updateWordsDictionaryQueryString()">See some Stats !</a>                                
+                            <a href="#" id="statsLink" onclick="OpenStats()">See some Stats !</a>                                
                         </div>                 
                     </div>        
                     <br/><br/>

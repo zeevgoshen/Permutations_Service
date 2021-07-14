@@ -53,7 +53,6 @@
     <Content Include="packages.config" />
     <Content Include="api\v1\stats.asmx" />
     <Content Include="api\v1\similar.asmx" />
-    <Content Include="index.html" />
     <Content Include="styling.css" />
     <Content Include="js_scripts.js" />
     <Content Include="Default.aspx" />
