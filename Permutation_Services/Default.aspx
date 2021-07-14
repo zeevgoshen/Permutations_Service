@@ -14,7 +14,7 @@
         <table><tr><td width="40%"></td><td><h1 class="h1_text">Permutation test</h1></td><td></td></tr>
             <tr><td></td><td>
                 <div class="main">
-                    <div style="margin:20px;border:1px solid red;padding:10px">
+                    <div class="mainContainer">
                         <div>
                             <p>Search examples: <i><b>"apple"</b></i>, <i><b>"stressed".</b></i>
                             Some queries take longer.
@@ -30,7 +30,7 @@
                         </div>                 
                     </div>        
                     <br/><br/>
-                    <label id="messageDiv" style="font-size:40px">When tranfered to the results page, press the "Back" button to come back here.</label>
+                    <label id="messageDiv" style="font-size:40px">When transfered to the results page, press the "Back" button to come back here.</label>
                 </div>                
             </td><td></td></tr>
         </table>
