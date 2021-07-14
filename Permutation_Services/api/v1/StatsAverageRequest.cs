@@ -32,7 +32,12 @@ namespace Permutation_Services.api.v1
 
                     bool res = int.TryParse( s.Substring(s.LastIndexOf(":") + 1, numberOfDigits), out sum);
                 }
-                return (int)sum / requestItems.Count();
+
+                if (sum > 0 && requestItems.Count() > 0)
+                {
+                    return (int)sum / requestItems.Count();
+                }
+                return 0;
             }
             catch (Exception ex)
             {

@@ -16,8 +16,8 @@ namespace Permutation_Services.api.v1
     public class stats : WebService
     {
         Utils utils;
-        string log_path;
-        string db_path;
+        string log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME);
+        string db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
@@ -28,12 +28,15 @@ namespace Permutation_Services.api.v1
             {
                 utils = Utils.GetInstance();
 
-                log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME);
-                db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
+                if (utils.InitLogging().Equals(1))
+                {
+                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME), "Log init failed.");
+                }
 
                 if (!File.Exists(log_path) || !File.Exists(db_path))
                 {
-                    utils.WriteLog(log_path, "DEBUG", "log file or DB were not found.");
+                    File.WriteAllText(log_path, "log file or DB were not found.");
+                    Context.Response.Write("log file or DB were not found. Perform at least 1 search before viewing statistics.");
                     return;
                 }
 
@@ -63,7 +66,7 @@ namespace Permutation_Services.api.v1
             }
             catch (Exception ex)
             {
-                utils.WriteLog(log_path, "ERROR", "log file or DB were not found.");
+                File.WriteAllText(log_path, "log file or DB were not found. " + ex.Message + " - " + ex.StackTrace);
                 return;
             }
 
