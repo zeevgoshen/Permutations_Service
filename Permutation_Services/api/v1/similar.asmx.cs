@@ -54,9 +54,7 @@ namespace Permutation_Services
                 // 3 cross results
                 var watchPerformSearch = System.Diagnostics.Stopwatch.StartNew();
 
-                Task.WaitAll(PerformSearch(allPermResults, dbResults));
-
-                //PerformSearchSync(allPermResults, dbResults);
+                Task.WaitAll(IntersectResults(allPermResults, dbResults));
 
                 watchPerformSearch.Stop();
 
@@ -68,7 +66,6 @@ namespace Permutation_Services
                 SerializeWorldList ser = SerializeWorldList.Create(finalWordList);
                 string jsonString = ser.Convert();
                 Context.Response.Write(jsonString);
-
             }
             catch (Exception ex)
             {
@@ -91,17 +88,10 @@ namespace Permutation_Services
         }
 
 
-        private Task PerformSearch(List<string> allPermResults, List<string> dbResults)
+        private Task IntersectResults(List<string> allPermResults, List<string> dbResults)
         {
-            finalWordList = new List<string>();
-
-            foreach (string s in allPermResults)
-            {
-                if (dbResults.Contains(s))
-                {
-                    finalWordList.Add(s);
-                }
-            };
+            IEnumerable<string> newFinalWordList = allPermResults.Select(i => i.ToString()).Intersect(dbResults);
+            finalWordList = newFinalWordList.ToList();
             return Task.CompletedTask;
         }
     }
