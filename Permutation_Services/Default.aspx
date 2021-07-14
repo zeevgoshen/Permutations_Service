@@ -18,7 +18,7 @@
                         <div>
                             <p>Search examples: <i><b>"apple"</b></i>, <i><b>"stressed".</b></i>
                             Some queries take longer.
-                            <br/><br/>Wait for the results to show on the next page.
+                            <br/><br/>WAIT for the results to show on the next page.
                             <br/><br/>There is no progress indicator !</p>
                         </div>     
                         <div class="">
