@@ -38,6 +38,11 @@ for example: "Projects/Permutation_Services/Permutation_Services"
 
 once there, run: "xsp4 --port 8000"
 
+<b>In case of any issues/error messages, run:</b>
+"sudo lsof -i:8000 -n -P" in terminal - to check if something is using port 8000
+(if so then kill it and re-run "xsp4 --port 8000").
+
+
 
 
 open a web browser and paste the address: 
