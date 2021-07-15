@@ -12,7 +12,7 @@ namespace Permutation_Services.api.v1
         string log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME);
 
         int numberOfDigits = 0;
-        int sum = 0;
+        int sum, currentValue = 0;
         Utils utils;
 
         public StatsAverageRequest(IEnumerable<string> RequestItems)
@@ -27,12 +27,14 @@ namespace Permutation_Services.api.v1
             {
                 foreach (string s in requestItems)
                 {
-                    numberOfDigits = s.Length -1 - s.LastIndexOf(":");
+                    numberOfDigits = s.Length -1 - s.LastIndexOf(":", StringComparison.OrdinalIgnoreCase);
 
-                    bool res = int.TryParse( s.Substring(s.LastIndexOf(":") + 1, numberOfDigits), out sum);
+                    bool res = int.TryParse( s.Substring(s.LastIndexOf(":", StringComparison.OrdinalIgnoreCase) + 1,
+                     numberOfDigits), out currentValue);
+                    sum += currentValue;
                 }
 
-                if (sum > 0 && requestItems.Count() > 0)
+                if (sum > 0 && requestItems.Any())
                 {
                     return (int)sum / requestItems.Count();
                 }

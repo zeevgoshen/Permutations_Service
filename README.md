@@ -8,12 +8,13 @@ Searching for permutations of a user input word in a local DB file.
 and the value is the count of this letter, in the complete word.
 
 2. The algorithm then chooses a character, and computes all matching permutations 
-of the remaining letters and append those to the already picked "prefix".
+of the remaining letters and append those to the already picked "prefix", recursively.
 	
 3. Before starting the search, the input word is convereted to lower-case.
 
 
-*KNOWN ISSUES
+<b>*KNOWN ISSUES</b>
+
 -No UI updates on long words being permutated.
 
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Permutation_Services;
 
 namespace Permutation_Services.Common
@@ -11,6 +13,7 @@ namespace Permutation_Services.Common
         public static string log_path = Path.Combine(Environment.CurrentDirectory, Constants.Logs.LOGS_FOLDER, Constants.Logs.LOG_FILENAME);
         private static readonly object syncLock = new object();
         private static Utils mInstance;
+        public List<string> mResults;
 
         private Utils()
         {
@@ -68,104 +71,61 @@ namespace Permutation_Services.Common
             File.AppendAllText(log_path, "\n" + DateTime.Now + " " + severity + " " + txt);
         }
 
-        public List<string> OpenDBFileAndReturnList()
-        {
-            try
-            {
-                mInstance.WriteLog(log_path, "INFO", "Opening DB for reading.");
-                string db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
-
-                if (!File.Exists(db_path))
-                {
-                    return null;
-                }
-
-                // By default, ReadAllLines(*) closes the file after reading
-                var wordFile = File.ReadAllLines(db_path);
-                var wordList = new List<string>(wordFile);
-
-                return wordList;
-            }
-            catch (Exception ex)
-            {
-                mInstance.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
-                return null;
-            }
-        }
-
         public string SerializeDBResultsList(List<string> wordsFromDB)
         {
             SerializeWorldList serializedWords = SerializeWorldList.Create(wordsFromDB);
             return serializedWords.Convert();
         }
 
-        public List<string> GetPermutationsWithDuplicatesAsync(string s)
-        {
-            List<string> result = new List<string>();
-            Dictionary<char, int> map = BuildFreqTable(s);
-            GetPermutationsWithDuplicates(map, "", s.Length, result);
-            return result;
-        }
-
-
-        public List<string> GetPermutationsWithDuplicates(string s)
-        {
-            List<string> result = new List<string>();
-            Dictionary<char, int> map = BuildFreqTable(s);
-            GetPermutationsWithDuplicates(map, "", s.Length, result);
-            return result;
-        }
-
-        public Dictionary<char, int> BuildFreqTable(string s)
-        {
-            Dictionary<char, int> map = new Dictionary<char, int>();
-            foreach (char c in s.ToCharArray())
-            {
-                if (!map.ContainsKey(c))
-                {
-                    map.Add(c, 0);
-                }
-                map[c]++; //(c, map[c] + 1); // [c] instead of .get(c) which gets value by key
-            }
-            return map;
-        }
-
-        void GetPermutationsWithDuplicates(Dictionary<char, int> map, String prefix, int remaining, List<string> result)
+        public Task GetPermutationsWithDuplicates(string s)
         {
             try
             {
-                /* Base case. Permutation has been completed. */
-                if (remaining == 0)
-                {
-                    result.Add(prefix);
-                    return;
-                }
+                mResults = new List<string>();
 
-                foreach (char c in new List<char>(map.Keys)) // or map.Keys
-                {
-                    int count = map[c]; // [c] instead of .get(c) which gets value by key
+                string res = new_algo(s);
 
-                    if (count > 0)
-                    {
-                        map[c]--;
-                        GetPermutationsWithDuplicates(map, prefix + c, remaining - 1, result);
-                        map[c] = count;
-                    }
-                }
+                string[] lines = res.Split(
+                    new[] { "\r\n", "\r", "\n" },
+                    StringSplitOptions.None
+                );
+
+                mResults = lines.ToList();
+
+                return Task.CompletedTask;
             }
             catch (Exception ex)
             {
                 mInstance.WriteLog(log_path, "ERROR", ex.Message + " " + ex.StackTrace);
+                //response.Write("Query too big.");
+                return null;
             }
-
         }
 
-        // assumptions:
-        // case-incensitive
-        // whitespace is insignificant
-        //
-        // check character count
-        // pg. 194
+        public string new_algo(string word)
+        {
+            var input = new string(word.ToLower().OrderBy(c => c).ToArray());
+            //string input = word.ToLower().OrderBy(c => c).ToArray();
 
+            string db_path = Path.Combine(Environment.CurrentDirectory, Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
+
+            if (Environment.CurrentDirectory.Contains(Constants.ENVIRONMENT.TEST))
+            {
+                DirectoryInfo d = Directory.GetParent(Environment.CurrentDirectory).Parent;
+                db_path = Path.Combine(d.ToString(), Constants.DB.FOLDER_NAME, Constants.DB.TABLE_NAME);
+            }
+
+            if (!File.Exists(db_path))
+            {
+                return null;
+            }
+
+            string dictFile = db_path; //@"c:\temp\dict.txt";
+
+            var dict = new HashSet<string>(File.ReadAllLines(dictFile).Where(s => s.Length == input.Length).Select(s => s.ToLower()));
+            var words = from d in dict where d.Length == input.Length && new string(d.OrderBy(c => c).ToArray()) == input select d;
+
+            return string.Join("\n", words);
+        }
     }
 }

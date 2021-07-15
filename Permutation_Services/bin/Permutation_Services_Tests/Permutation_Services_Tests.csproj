@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test.cs" />
+    <Compile Include="GetAndMatchPermutations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
