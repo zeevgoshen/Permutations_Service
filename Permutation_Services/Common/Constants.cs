@@ -24,5 +24,9 @@ namespace Permutation_Services
             public const string LOGS_FOLDER = "Logs";
             public const string LOG_FILENAME = "Log.txt";
         }
+        public class ENVIRONMENT
+        {
+            public const string TEST = "Test";
+        }
     }
 }

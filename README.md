@@ -13,6 +13,8 @@ of the remaining letters and append those to the already picked "prefix".
 3. Before starting the search, the input word is convereted to lower-case.
 
 
+*KNOWN ISSUES
+-No UI updates on long words being permutated.
 
 
 

@@ -14,7 +14,6 @@ namespace Permutation_Services.api.v1
         int numberOfDigits = 0;
         int sum = 0;
         Utils utils;
-        int result;
 
         public StatsAverageRequest(IEnumerable<string> RequestItems)
         {
