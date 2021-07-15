@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -40,38 +41,44 @@ namespace Permutation_Services
                     return;
                 }
 
-                word = word.ToLower();
-                utils.WriteLog(log_path, "INFO", "Searching for: " + word);
-                //List<string> allPermResults = await Task.Run(() => utils.GetPermutationsWithDuplicatesAsync(inputWord));
-
-                // 1 calc perms
-                List<string> allPermResults = utils.GetPermutationsWithDuplicates(word);
-
-                // 2 read db
-                List<string> dbResults = utils.OpenDBFileAndReturnList();
-                finalWordList = new List<string>();
-
-                // 3 cross results
-                var watchPerformSearch = System.Diagnostics.Stopwatch.StartNew();
-
-                Task.WaitAll(IntersectResults(allPermResults, dbResults));
-
-                watchPerformSearch.Stop();
-
-                var elapsedMsPerformSearch = watchPerformSearch.ElapsedMilliseconds;
-                utils.WriteLog(log_path, "INFO", "PerformSearch of " + word + " took - [ms]:" + elapsedMsPerformSearch.ToString());
-
-                finalWordList.Remove(word);
-
-                SerializeWorldList ser = SerializeWorldList.Create(finalWordList);
-                string jsonString = ser.Convert();
-                Context.Response.Write(jsonString);
+                word = WordsResponse(word);
             }
             catch (Exception ex)
             {
                 File.WriteAllText(log_path, ex.Message);
                 return;
             }
+        }
+
+        private string WordsResponse(string word)
+        {
+            word = word.ToLower();
+            utils.WriteLog(log_path, "INFO", "Searching for: " + word);
+            //List<string> allPermResults = await Task.Run(() => utils.GetPermutationsWithDuplicatesAsync(inputWord));
+
+            // 1 calc perms
+            List<string> allPermResults = utils.GetPermutationsWithDuplicates(word);
+
+            // 2 read db
+            List<string> dbResults = utils.OpenDBFileAndReturnList();
+            finalWordList = new List<string>();
+
+            // 3 cross results
+            var watchPerformSearch = System.Diagnostics.Stopwatch.StartNew();
+
+            Task.WaitAll(IntersectResults(allPermResults, dbResults));
+
+            watchPerformSearch.Stop();
+
+            var elapsedMsPerformSearch = watchPerformSearch.ElapsedMilliseconds;
+            utils.WriteLog(log_path, "INFO", "PerformSearch of " + word + " took - [ms]:" + elapsedMsPerformSearch.ToString());
+
+            finalWordList.Remove(word);
+
+            SerializeWorldList ser = SerializeWorldList.Create(finalWordList);
+            string jsonString = ser.Convert();
+            Context.Response.Write(jsonString);
+            return word;
         }
 
         private void PerformSearchSync(List<string> allPermResults, List<string> dbResults)
@@ -90,8 +97,15 @@ namespace Permutation_Services
 
         private Task IntersectResults(List<string> allPermResults, List<string> dbResults)
         {
+            //Semaphore semaphore = new Semaphore(0,1);
+            //semaphore.Close();
+
+            if (dbResults == null)
+                return null; //Task.FromException(throw new EmptyDBResultsException);
             IEnumerable<string> newFinalWordList = allPermResults.Select(i => i.ToString()).Intersect(dbResults);
+            //Thread.Sleep(2000);
             finalWordList = newFinalWordList.ToList();
+            //semaphore.Release();
             return Task.CompletedTask;
         }
     }
