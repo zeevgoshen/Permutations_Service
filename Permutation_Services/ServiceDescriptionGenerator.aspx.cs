@@ -155,7 +155,7 @@ namespace com.esendex.webservicedocumentation
 
 				string action = UTF8EscapeString(((SoapOperationBinding)SoapOperationBinding.Extensions.Find(typeof(SoapOperationBinding))).SoapAction);
 
-				Uri uri = new Uri(soapAddress.Location);
+				Uri uri = new Uri(soapAddress.Location, false);
 
 				Write("POST ");
 				Write(uri.AbsolutePath);
