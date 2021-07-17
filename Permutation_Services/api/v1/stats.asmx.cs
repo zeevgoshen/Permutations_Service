@@ -12,7 +12,7 @@ using System.Web.Script.Services;
 
 namespace Permutation_Services.api.v1
 {
-    [WebService(Namespace = "http://tempuri.org/")]
+    [WebService(Namespace = "http://localhost:8000/api/v1/similar.asmx/Show_Stats")]
     public class stats : WebService
     {
         Utils utils;

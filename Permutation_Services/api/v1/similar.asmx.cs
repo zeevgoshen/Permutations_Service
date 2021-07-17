@@ -15,7 +15,7 @@ using Permutation_Services.Common;
 
 namespace Permutation_Services
 {
-    [WebService(Namespace = "http://localhost:8000/api/v1/similar.asmx/")]
+    [WebService(Namespace = "http://localhost:8000/api/v1/similar.asmx/Find_Permutations_In_DB?word=")]
     public class similar : WebService
     {
         Utils               utils;

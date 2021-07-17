@@ -1480,18 +1480,18 @@ namespace com.esendex.webservicedocumentation
 
 		protected string GetLocalizedText(string name, object[] args) 
 		{
-            //try
-            //{
+            try
+            {
                 ResourceManager rm = (ResourceManager)Application["RM"];
     			string val = rm.GetString("HelpGenerator" + name);
     			if (val == null) return String.Empty;
     			return String.Format(val, args);
-            //}
+            }
 
-            //catch (Exception ex)
-            //{
-            //    return String.Empty;
-            //}
+            catch (Exception ex)
+            {
+                return name;
+            }
         }
 
 
@@ -1520,7 +1520,7 @@ namespace com.esendex.webservicedocumentation
 			//Esendex: Attempt to load Web Service documentation from an exernal file.
 			LoadDocumentation();
 
-			if (Application["RM"] == null) 
+            if (Application["RM"] == null) 
 			{
 				lock (this.GetType()) 
 				{
