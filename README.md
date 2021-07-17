@@ -3,10 +3,10 @@
 
 Searching for permutations of a user input word in a local DB file. 
 
-
+<br/>
 <b>Permutation definition:</b> a string is a permutation of some characters, if all string characters are contained in the list of the permutation characters.
 
-
+<br/>
 Accept a string and store the characters as permutation character array A.
 
 The length L of the array gives the length of the entries to match in the dictionary.
@@ -18,18 +18,19 @@ Print only those Es of length L an where all chars of E are contained in A
 	
 * Before starting the search, the input word is convereted to lower-case.
 
-<br/><br/>
+<br/>
 
 
 <b>*KNOWN ISSUES</b>
 
 -No UI updates on long words being permutated.
 
-<br/><br/>
+<br/>
 
 
 
 <b>INSTALLATION OF MONO</b>
+<br/>
 
 1st step, Adding the repo, paragraph 1:
 
@@ -40,6 +41,7 @@ I used Ubuntu 20.04
 
 https://www.mono-project.com/download/stable/#download-lin
 
+<br/>
 
 <b>Running the web-service:</b>
 
