@@ -8,15 +8,15 @@ Searching for permutations of a user input word in a local DB file.
 
 <br/>
 <br/>
-Accept a string and store the characters as permutation character array A.
+Algorithm description -
+<br/>
 
-The length L of the array gives the length of the entries to match in the dictionary.
+-Accept a string and store the characters as permutation character array A.
+-The length L of the array gives the length of the entries to match in the dictionary.
+-Read the dictionary into a hash table D for all entries E of D
+-Print only those Es of length L an where all chars of E are contained in A
 
-Read the dictionary into a hash table D for all entries E of D
 
-Print only those Es of length L an where all chars of E are contained in A
-
-	
 * Before starting the search, the input word is convereted to lower-case.
 
 <br/>
