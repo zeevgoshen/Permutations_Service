@@ -18,12 +18,14 @@ Print only those Es of length L an where all chars of E are contained in A
 	
 * Before starting the search, the input word is convereted to lower-case.
 
+<br/><br/>
+
 
 <b>*KNOWN ISSUES</b>
 
 -No UI updates on long words being permutated.
 
-
+<br/><br/>
 
 
 
