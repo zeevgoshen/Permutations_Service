@@ -25,6 +25,8 @@ Algorithm description -
 <b>*KNOWN ISSUES</b>
 
 -No UI updates on long words being permutated.
+-The Test project files are included but the project was removed from the solution
+since it was causing build issues when downloading/cloning from Github.
 
 <br/>
 
