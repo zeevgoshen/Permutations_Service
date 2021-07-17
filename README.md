@@ -4,13 +4,19 @@
 Searching for permutations of a user input word in a local DB file. 
 
 
-1. The algorithm builds a dictionary from the input word where the key is a character
-and the value is the count of this letter, in the complete word.
+<b>Permutation definition:</b> a string is a permutation of some characters, if all string characters are contained in the list of the permutation characters.
 
-2. The algorithm then chooses a character, and computes all matching permutations 
-of the remaining letters and append those to the already picked "prefix", recursively.
+
+Accept a string and store the characters as permutation character array A.
+
+The length L of the array gives the length of the entries to match in the dictionary.
+
+Read the dictionary into a hash table D for all entries E of D
+
+Print only those Es of length L an where all chars of E are contained in A
+
 	
-3. Before starting the search, the input word is convereted to lower-case.
+* Before starting the search, the input word is convereted to lower-case.
 
 
 <b>*KNOWN ISSUES</b>
