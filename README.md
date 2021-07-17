@@ -60,7 +60,7 @@ once there, run: "xsp4 --port 8000"
 
 <b>In case of any issues/error messages, run:</b>
 "sudo lsof -i:8000 -n -P" in terminal - to check if something is using port 8000
-(if so then kill it and re-run "xsp4 --port 8000").
+(if so then kill it and re-run "xsp4 --port 8000 --verbose").
 
 
 <b>* Don't forget to build the source code on RELEASE after cloning/downloading it. I used
@@ -88,7 +88,7 @@ http://127.0.0.1:8000/api/v1/stats.asmx/Show_Stats
 <br/>
 <br/>
 You can unzip the Compiled_Binaries.zip archive and place the \bin and \obj folders next to the source files
-to skip building the project yourself. After running "xsp4 --port 8000", use the links above.
+to skip building the project yourself. After running "xsp4 --port 8000 --verbose", use the links above.
 
 
 
