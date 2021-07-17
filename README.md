@@ -7,6 +7,7 @@ Searching for permutations of a user input word in a local DB file.
 <b>Permutation definition:</b> a string is a permutation of some characters, if all string characters are contained in the list of the permutation characters.
 
 <br/>
+<br/>
 Accept a string and store the characters as permutation character array A.
 
 The length L of the array gives the length of the entries to match in the dictionary.
