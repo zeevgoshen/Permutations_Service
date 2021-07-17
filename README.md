@@ -73,11 +73,15 @@ http://127.0.0.1:8000 OR http://localhost:8000
 
 --or
 
-http://127.0.0.1:8000/api/v1/similar.asmx?page=op&op=CheckWordAsync&bnd=similarSoap12&tab=test
-
-http://127.0.0.1:8000/api/v1/similar.asmx
-
-http://127.0.0.1:8000/api/v1/stats.asmx
+http://localhost:8000/api/v1/similar.asmx/Find_Permutations_In_DB?word=door
+<br/>
+http://127.0.0.1:8000/api/v1/similar.asmx/Find_Permutations_In_DB?word=apple
+<br/>
+<br/>
+http://localhost:8000/api/v1/stats.asmx/Show_Stats
+<br/>
+http://127.0.0.1:8000/api/v1/stats.asmx/Show_Stats
+<br/>
 
 
 <b><h2>Press "Back" after viewing the results.</h2></b>
