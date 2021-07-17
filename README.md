@@ -50,13 +50,13 @@ https://www.mono-project.com/download/stable/#download-lin
 <b>Running the web-service:</b>
 
 In terminal: cd to the project files folder (not the .sln file) and run:
-xsp4 --port 8000
+xsp4 --port 8000 --verbose
 
 
 for example: "Projects/Permutation_Services/Permutation_Services"
 
 
-once there, run: "xsp4 --port 8000"
+once there, run: "xsp4 --port 8000 --verbose"
 
 <b>In case of any issues/error messages, run:</b>
 "sudo lsof -i:8000 -n -P" in terminal - to check if something is using port 8000
