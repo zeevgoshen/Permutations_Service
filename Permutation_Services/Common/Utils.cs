@@ -83,7 +83,7 @@ namespace Permutation_Services.Common
             {
                 mResults = new List<string>();
 
-                string res = new_algo(s);
+                string res = FindPermutationsInFile(s);
 
                 string[] lines = res.Split(
                     new[] { "\r\n", "\r", "\n" },
@@ -102,7 +102,7 @@ namespace Permutation_Services.Common
             }
         }
 
-        public string new_algo(string word)
+        public string FindPermutationsInFile(string word)
         {
             var input = new string(word.ToLower().OrderBy(c => c).ToArray());
             //string input = word.ToLower().OrderBy(c => c).ToArray();

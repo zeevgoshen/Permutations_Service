@@ -11,21 +11,20 @@
 <body style="font-family:Arial;">
 	<form id="form1" runat="server">
         
-        <table><tr><td width="40%"></td><td><h1 class="h1_text">Permutation test</h1></td><td></td></tr>
+        <table><tr><td width="40%"></td><td><h1 class="h1_text"><u>Permutation test</u></h1></td><td></td></tr>
             <tr><td></td><td>
                 <div class="main">
                     <div class="mainContainer">
-                        <div>
+                        <div style="text-align:center;">
                             <p>Search examples: <i><b>"apple"</b></i>, <i><b>"stressed".</b></i>
-                            Some queries take longer.
                             <br/><br/>WAIT for the results to show on the next page.
                             <br/><br/>There is no progress indicator !</p>
                         </div>     
-                        <div class="">
+                        <div style="text-align:center;">
                             <input id="first_word" type="text" class="similar_css"/>        
                             <a href="#" class="similar_css" id="link_words" onclick="QueryPermutationDB()">Similar word</a>
                         </div>       
-                        <div class="">
+                        <div style="text-align:center;">
                             <a href="#" id="statsLink" onclick="OpenStats()">See some Stats !</a>                                
                         </div>                 
                     </div>        

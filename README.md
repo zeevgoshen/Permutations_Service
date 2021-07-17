@@ -26,8 +26,9 @@ Algorithm description -
 
 -No UI updates on long words being permutated.<br/>
 -The Test project files are included but the project was removed from the solution
-since it was causing build issues when downloading/cloning from Github.
-
+since it was causing build issues when downloading/cloning from Github.</br>
+-The actual urls are longer since I used the built-in description page for showing the results
+and this page takes parameters regarding the specific tab to open in.
 <br/>
 
 
