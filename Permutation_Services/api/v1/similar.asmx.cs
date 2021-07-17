@@ -66,10 +66,12 @@ namespace Permutation_Services
             {
                 word = word.ToLower();
                 utils.WriteLog(log_path, "INFO", "Searching for: " + word);
-                //List<string> allPermResults = await Task.Run(() => utils.GetPermutationsWithDuplicatesAsync(inputWord));
 
-                // 1 calc perms
+                var watchPerformSearch = System.Diagnostics.Stopwatch.StartNew();
+
                 Task.WaitAll(utils.GetPermutationsWithDuplicates(word));
+
+                watchPerformSearch.Stop();
 
                 if (utils.mResults == null)
                 {
@@ -77,14 +79,11 @@ namespace Permutation_Services
                     return Task.CompletedTask;
                 }
 
-                finalWordList = utils.mResults; //new List<string>();
-                
-                var watchPerformSearch = System.Diagnostics.Stopwatch.StartNew();
+                finalWordList = utils.mResults;
 
-                watchPerformSearch.Stop();
+                var elapsedNsPerformSearch = watchPerformSearch.Elapsed.TotalMilliseconds * 1000000;
 
-                var elapsedMsPerformSearch = watchPerformSearch.ElapsedMilliseconds;
-                utils.WriteLog(log_path, "INFO", "PerformSearch of " + word + " took - [ms]:" + elapsedMsPerformSearch.ToString());
+                utils.WriteLog(log_path, "INFO", "PerformSearch of " + word + " took - [ns]:" + elapsedNsPerformSearch.ToString());
 
                 finalWordList.Remove(word);
 

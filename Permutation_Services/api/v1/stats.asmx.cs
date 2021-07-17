@@ -21,12 +21,21 @@ namespace Permutation_Services.api.v1
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
-        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void Show_Stats()
         {
             try
             {
                 utils = Utils.GetInstance();
+                var                 wordFile = File.ReadAllLines(db_path);
+                List<string>        wordList = new List<string>(wordFile);
+                var                 logFile = File.ReadAllLines(log_path);
+                List<string>        logList = new List<string>(logFile);
+                IEnumerable<string> items = logList;
+                int                 count = 0;
+                int                 numberOfRequests = 0;
+                IEnumerable<string> uitems;
+                StatsAverageRequest averageRequest;
+                string              jsonString = string.Empty;
 
                 if (utils.InitLogging().Equals(1))
                 {
@@ -40,29 +49,16 @@ namespace Permutation_Services.api.v1
                     return;
                 }
 
-                var wordFile = File.ReadAllLines(db_path);
-                List<string> wordList = new List<string>(wordFile);
-
-                // Reading the log file
-                // By default, ReadAllLines(*) closes the file after reading
-                var logFile = File.ReadAllLines(log_path);
-                List<string> logList = new List<string>(logFile);
-
-                // info from logs
-                IEnumerable<string> items = logList;
-                int count = items.Count(x => x.Contains("Searching for"));
-
-                int numberOfRequests = items.Count(x => x.Contains("PerformSearch of"));
-
-                IEnumerable<string> uitems = items.Where(x => x.Contains("PerformSearch of"));
-
-                StatsAverageRequest averageRequest = new StatsAverageRequest(uitems);
-
-                SerializeStats ser = SerializeStats.Create(wordList.Count, count, averageRequest.ParseString());
-                string jsonString = ser.Convert();
-
+                if (items.Any())
+                {
+                    count = items.Count(x => x.Contains("Searching for"));
+                    numberOfRequests = items.Count(x => x.Contains("PerformSearch of"));
+                    uitems = items.Where(x => x.Contains("PerformSearch of"));
+                    averageRequest = new StatsAverageRequest(uitems);
+                    SerializeStats ser = SerializeStats.Create(wordList.Count, count, averageRequest.ParseString());
+                    jsonString = ser.Convert();
+                }
                 Context.Response.Write(jsonString);
-
             }
             catch (Exception ex)
             {
