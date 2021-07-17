@@ -87,7 +87,7 @@ http://127.0.0.1:8000/api/v1/stats.asmx/Show_Stats
 <b><h2>Press "Back" after viewing the results.</h2></b>
 <br/>
 <br/>
-You can unzip the Compiled_Binaries archive and place the \bin and \obj folders next to the source files
+You can unzip the Compiled_Binaries.zip archive and place the \bin and \obj folders next to the source files
 to skip building the project yourself. After running "xsp4 --port 8000", use the links above.
 
 
