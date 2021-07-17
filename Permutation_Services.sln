@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permutation_Services", "Permutation_Services\Permutation_Services.csproj", "{EE8CEFFC-7322-489B-BF8C-40BD7C3438BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permutation_Services_Tests", "Permutation_Services_Tests\Permutation_Services_Tests.csproj", "{8B24AC99-6583-4FC6-8394-29C10761349C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{EE8CEFFC-7322-489B-BF8C-40BD7C3438BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE8CEFFC-7322-489B-BF8C-40BD7C3438BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE8CEFFC-7322-489B-BF8C-40BD7C3438BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B24AC99-6583-4FC6-8394-29C10761349C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B24AC99-6583-4FC6-8394-29C10761349C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B24AC99-6583-4FC6-8394-29C10761349C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B24AC99-6583-4FC6-8394-29C10761349C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		BaseDirectory = Permutation_Services/bin
