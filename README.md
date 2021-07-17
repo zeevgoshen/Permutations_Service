@@ -60,7 +60,8 @@ once there, run: "xsp4 --port 8000"
 (if so then kill it and re-run "xsp4 --port 8000").
 
 
-<b>* Don't forget to build the source code after cloning/downloading it.</b>
+<b>* Don't forget to build the source code on RELEASE after cloning/downloading it. I used
+MonoDevelop.</b>
 
 
 open a web browser and paste the address: 
