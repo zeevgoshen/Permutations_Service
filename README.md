@@ -45,6 +45,10 @@ I used Ubuntu 20.04
 
 https://www.mono-project.com/download/stable/#download-lin
 
+3rd step, installing xsp4:
+
+"sudo apt install mono-xsp4"
+
 <br/>
 
 <b>Running the web-service:</b>
